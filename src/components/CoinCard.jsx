@@ -22,7 +22,8 @@ export default function CoinCard({ token, onTrade, onClick }) {
                 e.target.src = getTokenIconSvg(token.ticker, token.name);
               }}
             />
-            {token.graduated && (\n              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold">
+            {token.graduated && (
+              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold">
                 ✓
               </span>
             )}
