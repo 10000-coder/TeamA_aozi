@@ -1,26 +1,28 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { getTokenIconSvg } from '../utils/visuals';
 
 export default function CoinCard({ token, onTrade, onClick }) {
+  const imgSrc = token.image || getTokenIconSvg(token.ticker, token.name);
+
   return (
     <div
       onClick={() => onClick ? onClick(token) : onTrade(token)}
-      className="group relative bg-white/80 dark:bg-[#101212]/80 backdrop-blur-md rounded-3xl p-5 border border-black/[0.06] dark:border-white/[0.08] hover:border-emerald-500/50 hover:shadow-xl transition-all duration-200 cursor-pointer flex flex-col justify-between"
+      className="group relative bg-white/80 dark:bg-[#101212]/80 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-black/[0.06] dark:border-white/[0.08] hover:border-emerald-500/50 hover:shadow-xl transition-all duration-200 cursor-pointer flex flex-col justify-between"
     >
       <div>
-        <div className="flex items-start gap-3 mb-4">
-          <div className="relative">
+        <div className="flex items-start gap-3 mb-3.5">
+          <div className="relative flex-shrink-0">
             <img
-              src={token.image}
+              src={imgSrc}
               alt={token.name}
-              className="w-12 h-12 rounded-2xl object-cover border border-black/5 dark:border-white/10 group-hover:scale-105 transition-transform"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl object-cover border border-black/5 dark:border-white/10 group-hover:scale-105 transition-transform"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200&h=200&fit=crop";
+                e.target.src = getTokenIconSvg(token.ticker, token.name);
               }}
             />
-            {token.graduated && (
-              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px]">
+            {token.graduated && (\n              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold">
                 ✓
               </span>
             )}
@@ -28,10 +30,10 @@ export default function CoinCard({ token, onTrade, onClick }) {
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-1">
-              <h3 className="font-bold text-base truncate group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+              <h3 className="font-bold text-sm sm:text-base truncate group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                 {token.name}
               </h3>
-              <span className="mono text-xs font-semibold px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-neutral-600 dark:text-neutral-300">
+              <span className="mono text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-neutral-600 dark:text-neutral-300">
                 {token.ticker}
               </span>
             </div>
@@ -43,7 +45,7 @@ export default function CoinCard({ token, onTrade, onClick }) {
           </div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-3.5">
           <div className="flex items-center justify-between text-xs mb-1.5 font-medium">
             <span className="text-neutral-500">{token.progress || 0}% to graduation</span>
             <span className="mono text-neutral-700 dark:text-neutral-300">
