@@ -34,6 +34,7 @@ body {
   font-family: var(--font-geist);
 }
 
+/* Authentic radial background glow from aozi.family */
 body::before {
   content: "";
   z-index: -1;
@@ -72,6 +73,7 @@ html[data-theme="dark"] body::before {
     radial-gradient(51% 49% at 80% 104%, #153a44e6 0%, #153a4480 32%, #153a4400 68%);
 }
 
+/* Custom button classes from aozi */
 .b {
   display: inline-flex;
   align-items: center;
